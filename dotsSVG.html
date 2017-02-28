@@ -1,0 +1,56 @@
+
+<html>
+  <head>
+    <title>HW#3 Canvas</title>
+  </head>
+  <body>
+    
+    <svg xmlns = "http://www.w3.org/2000/svg" id="svg" height = "750" width = "750" style = "border: 1px solid;" version = "1.1"></svg>
+    <button id="clear" name="clear">Clear!</button>
+    <script>
+      var notCanvas = document.getElementById("svg");
+      var clear = document.getElementById("clear");
+      var oldX = -1;
+      var oldY = -1;
+    
+        function drawLine(x, y){
+                var line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                line.setAttribute("x1", oldX);
+                line.setAttribute("y1", oldY);
+                line.setAttribute("x2", x);
+                line.setAttribute("y2", y);
+                line.setAttribute("stroke", "red");
+                line.setAttribute("style", "stroke:rgb(255,0,0);stroke-width:5");
+                notCanvas.appendChild(line);
+        }
+    
+      notCanvas.addEventListener('click', function(e){
+        var xNow = event.offsetX;
+        var yNow = event.offsetY;
+        if(oldX != -1){
+            drawLine(xNow, yNow);
+        }
+        console.log(xNow.toString());
+        var a = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        a.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+        a.setAttribute("cx", xNow);
+        a.setAttribute("cy", yNow);
+        a.setAttribute("r", 30);
+        a.setAttribute("fill", "goldenrod");
+        a.setAttribute("stroke", "lightsteelblue");
+        a.setAttribute("stroke-width", "20");
+        notCanvas.appendChild(a);
+        oldX = xNow;
+        oldY = yNow;
+        //notCanvas.
+      });
+        
+        clear.addEventListener('click', function(e){
+           notCanvas.innerHTML = "";
+           oldX = -1;
+           oldY = -1;
+        });
+        
+    </script>
+  </body>
+
